@@ -1,0 +1,24 @@
+<%- include("../partials/head" , {title:"Edit Post"}) %> 
+<div class="container">
+<form action="/posts/<%= post._id %> " method="post" class="mt-4">
+    <h1 class="has-text-centered is-size-2">EDIT POST</h1>
+    <div class="control">
+        <label for="title">Title</label>
+        <input type="text" name="title" id="title" class="input" value="<%= post.title %>" />
+    </div>
+    <div class="control">
+        <label for="body">Body</label>
+        <textarea name="content" id="content" class="textarea"><%= post.content %></textarea>
+    </div>
+    <div class="control">
+        <label for="image">image</label>
+        <input type="text" name="image" id="image" class="input" value="<%= post.image %>">
+    </div>
+    <div class="mt-2">
+        <input type="submit" class="button is-success is-outlined" value="Update Post" />
+    </div>
+
+</form>
+</div>
+
+<%- include("../partials/footer") %> 

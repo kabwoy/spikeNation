@@ -1,0 +1,30 @@
+<%- include("../partials/head" , {title:"All Posts"}) %> 
+
+<%- include("../partials/header") %>
+<div class="container mt-4">
+    
+    <div class="columns mt-5 is-8 is-variable is-multiline">
+        <% for(post of posts){ %>
+            <div class="column is-4-tablet is-3-desktop">
+                <div class="card is-hoverable">
+                    <div class="card-img">
+                    <img src="<%= post.image %>" width="200px" class="ml-4" alt="">
+                    </div>
+                    <div class="card-content has-text-centered">
+                    <h3><a href="/posts/<%= post._id %>"><%= post.title %></a></h3>
+                    <i>posted : <%= moment(post.createdat).fromNow() %> </i>
+                </div>
+                </div>
+            </div>
+          <% } %>    
+</div>
+
+
+    
+ 
+</div>
+
+<%- include("../partials/footer") %> 
+
+
+

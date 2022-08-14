@@ -1,0 +1,14 @@
+<%- include("../partials/head" , {title:post.title}) %> 
+<div class="container">
+<h3><%= post.title %> </h3>
+<img src="<%= post.image %>" width="200px" alt="">
+<p><%= post.content %> </p>
+<i><%= post.createdat %></i>
+<br>
+<a href="/posts/<%= post._id %>/edit" class="button is-secondary is-link is-outlined">Edit</a>
+<br>
+<form action="/posts/<%= post._id %>?_method=DELETE" method="post">
+    <input type="submit" value="Delete" class="button is-danger is-outlined mt-4">
+</form>
+</div>
+<%- include("../partials/footer") %> 
