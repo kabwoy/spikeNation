@@ -1,6 +1,7 @@
 <%- include("../partials/head" , {title:"New Post"}) %> 
 <div class="container mt-6">
 <form action="/posts" method="post">
+
     <h1 class="has-text-centered is-size-2">Create Post</h1>
     <div>
         <label for="title">Title</label>
@@ -15,6 +16,14 @@
     <div>
         <label for="image">image</label>
         <input class="input" type="text" name="image" id="image">
+    </div>
+
+    <div class="control mt-2">
+        <select name="tag" id="" class="select">
+            <% for(tag of tags){ %> 
+            <option value="<%= tag._id %>"><%= tag.name %></option>
+            <% } %> 
+        </select>
     </div>
 
     <div>

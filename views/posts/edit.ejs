@@ -14,6 +14,13 @@
         <label for="image">image</label>
         <input type="text" name="image" id="image" class="input" value="<%= post.image %>">
     </div>
+    <div class="control mt-2">
+        <select name="tag" id="" class="select">
+            <% for(tag of tags){ %> 
+            <option value="<%= tag._id %>"><%= tag.name %></option>
+            <% } %> 
+        </select>
+    </div>
     <div class="mt-2">
         <input type="submit" class="button is-success is-outlined" value="Update Post" />
     </div>

@@ -1,0 +1,30 @@
+<%- include("../partials/head" , {title:"Sign Up"}) %> 
+
+<%- include("../partials/header" , {title:"Sign Up"}) %> 
+
+<div class="container mt-6">
+<form action="/signup" method="post">
+    <h3 class="has-text-centered">SignUp</h3>
+    <div class="control">
+        <label for="username" class="label">Username</label>
+        <input type="text" class="input" name="username">
+    </div>
+
+
+    <div class="control">
+        <label for="email" class="label">Email</label>
+        <input type="email" class="input" name="email">
+    </div>
+
+
+    <div class="control">
+        <label for="password" class="label">Password</label>
+        <input type="password" class="input" name="password">
+    </div>
+
+    <input type="submit" value="Sign Up" class="button is-link is-outlined mt-4">
+</form>
+</div>
+
+
+<%- include("../partials/footer") %> 

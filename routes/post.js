@@ -4,32 +4,38 @@ const router = express.Router()
 
 const moment = require("moment")
 
+const Tag = require("../models/Tag")
+
 const Post = require("../models/Post")
+
 
 router.get('/posts',(req,res)=>{
 
-    Post.find({}).then((posts)=>{
+    Post.find({}).populate('tag').then((posts)=>{
 
-        // const res = moment(posts.createdat).fromNow()
+        console.log(posts)
 
-        res.render("posts/index",{posts:posts , moment:moment})
+        res.render("posts/index" , {posts , moment})
     })
 })
 
-router.get('/posts/new',(req,res)=>{
+router.get('/posts/new',async(req,res)=>{
+
+    const tags = await Tag.find({})
     
-    res.render("posts/new")
+    res.render("posts/new" , {tags})
 
 })
 
 router.post('/posts',(req,res)=>{
 
-    const {title,content,image} = req.body
+    const {title,content,image , tag } = req.body
 
     const post = new Post({
         title:title,
         content:content,
-        image:image
+        image:image,
+        tag:tag,
     })
 
     post.save().then(()=>{
@@ -56,13 +62,15 @@ router.get('/posts/:id',(req,res)=>{
         } )
     })
 
-router.get('/posts/:id/edit',(req,res)=>{
+router.get('/posts/:id/edit',async(req,res)=>{
         
         const {id} = req.params
+
+        const tags = await Tag.find({})
         
         Post.findById(id).then((post)=>{
         
-            res.render("posts/edit",{post:post})
+            res.render("posts/edit",{post:post , tags:tags})
         }).catch((err)=>{
         
             console.log(err)
@@ -72,9 +80,9 @@ router.get('/posts/:id/edit',(req,res)=>{
 router.post('/posts/:id',(req,res)=>{
         
         const {id} = req.params
-        const {title,content,image} = req.body
+        const {title,content,image,tag} = req.body
         
-        Post.findByIdAndUpdate(id,{title:title,content:content,image:image}).then(()=>{
+        Post.findByIdAndUpdate(id,{title:title,content:content,image:image ,tag:tag}).then(()=>{
         
             res.redirect(`/posts/${id}`)
         }).catch((err)=>{
