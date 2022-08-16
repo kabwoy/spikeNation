@@ -10,6 +10,8 @@ const postSchema = new mongoose.Schema({
 
     tag:{type:mongoose.Types.ObjectId , ref:'Tag'},
 
+    user:{type:mongoose.Types.ObjectId , ref:'User'},
+
     createdat: {type: Date , default: Date.now},
 
 });

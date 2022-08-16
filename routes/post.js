@@ -4,22 +4,28 @@ const router = express.Router()
 
 const moment = require("moment")
 
+const auth = require("../middleware/auth")
+
 const Tag = require("../models/Tag")
 
 const Post = require("../models/Post")
 
+const User = require("../models/User")
+
 
 router.get('/posts',(req,res)=>{
 
-    Post.find({}).populate('tag').then((posts)=>{
+    Post.find({}).populate('tag').then(async(posts)=>{
 
+        
         console.log(posts)
 
         res.render("posts/index" , {posts , moment})
     })
+
 })
 
-router.get('/posts/new',async(req,res)=>{
+router.get('/posts/new', auth ,  async(req,res)=>{
 
     const tags = await Tag.find({})
     

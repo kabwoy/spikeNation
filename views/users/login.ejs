@@ -1,0 +1,25 @@
+<%- include("../partials/head" , {title:"Login Up"}) %> 
+
+<%- include("../partials/header") %> 
+
+<div class="container mt-6">
+<form action="/login" method="post">
+    <h3 class="has-text-centered">Login</h3>
+
+    <div class="control">
+        <label for="email" class="label">Email</label>
+        <input type="email" class="input" name="email">
+    </div>
+
+
+    <div class="control">
+        <label for="password" class="label">Password</label>
+        <input type="password" class="input" name="password">
+    </div>
+
+    <input type="submit" value="Login" class="button is-link is-outlined mt-4">
+</form>
+</div>
+
+
+<%- include("../partials/footer") %> 
