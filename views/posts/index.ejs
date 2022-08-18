@@ -13,7 +13,11 @@
                     <div class="card-content has-text-centered">
                     <h3><a href="/posts/<%= post._id %>"><%= post.title %></a></h3>
                     <i>posted : <%= moment(post.createdat).fromNow() %> </i>
-                    <div class="card-footer">tag:<i><%= post.tag.name %> </i></div>
+                    <i style="display: block;">created_by:<b><%= post.user.username %> </b></i>
+                    <div class="card-footer is-text-centerd">
+                        tag:<i><%= post.tag.name %></i>
+                    </div>
+
                 </div>
                 </div>
             </div>

@@ -7,6 +7,8 @@ async function checkUser(req,res,next){
 
         req.user = user
 
+        res.locals.user_id = req.user._id
+
         console.log(user)
 
         next()

@@ -15,8 +15,10 @@ const User = require("../models/User")
 
 router.get('/posts',(req,res)=>{
 
-    Post.find({}).populate('tag').then(async(posts)=>{
-        console.log(req.user)
+    Post.find({}).populate('tag user').then(async(posts)=>{
+
+        console.log(posts)
+
         res.render("posts/index" , {posts , moment})
     })
 
@@ -40,13 +42,14 @@ router.get('/posts/new', auth, async(req,res)=>{
 
 router.post('/posts',(req,res)=>{
 
-    const {title,content,image , tag } = req.body
+    const {title,content,image , tag , user} = req.body
 
     const post = new Post({
         title:title,
         content:content,
         image:image,
         tag:tag,
+        user:user,
     })
 
     post.save().then(()=>{
