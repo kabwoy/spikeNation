@@ -45,16 +45,13 @@ router.post("/login" , async(req,res)=>{
 
     if(!Verifiedpassword) return res.status(400).send("Invalid Password")
 
-    const token = Verifiedemail.generateAuthToken()
+    // const token = Verifiedemail.generateAuthToken()
 
-    router.use(function(req,res,next){
+    req.session._id = Verifiedemail._id
 
-        req.user = token
-    
-        next()
-    })
+    req.session.isAuthenticated = true
 
-    res.redirect("/")
+    res.redirect("/posts")
 
 })
 

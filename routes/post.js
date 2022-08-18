@@ -16,20 +16,25 @@ const User = require("../models/User")
 router.get('/posts',(req,res)=>{
 
     Post.find({}).populate('tag').then(async(posts)=>{
-
-        
-        console.log(posts)
-
+        console.log(req.user)
         res.render("posts/index" , {posts , moment})
     })
 
 })
 
-router.get('/posts/new', auth ,  async(req,res)=>{
+router.get('/posts/new', auth, async(req,res)=>{
 
     const tags = await Tag.find({})
+
+    if(req.session.isAuthenticated){
+        // console.log(req.session.id)
+        res.render("posts/new" , {tags})
+    }else{
+
+        res.send("login")
+    }
     
-    res.render("posts/new" , {tags})
+    
 
 })
 
